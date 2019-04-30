@@ -8,9 +8,9 @@ AI fashion with DunHuang style . Using **GAN**
 new content of cloths ; Using **Style-Transfer** to 
 transfer style of Dunhuang to generated cloth
 
-**More about GAN :** [  GAN by keras](https://github.com/eriklindernoren/Keras-GAN)
+**More about of GAN :** [  GAN by keras](https://github.com/eriklindernoren/Keras-GAN)
 <br>
-**More about SF :** [  Style-Transfer with keras](https://keras.io/examples/neural_style_transfer/)
+**More about of SF :** [  Style-Transfer by keras](https://keras.io/examples/neural_style_transfer/)
 
 
 
