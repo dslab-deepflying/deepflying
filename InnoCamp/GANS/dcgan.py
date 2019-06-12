@@ -1,18 +1,19 @@
+"""
+DCGAN build with tensorflow2.0-beta by keras
+
+"""
 from __future__ import print_function, division
 
-from keras.datasets import mnist
-from keras.layers import Input, Dense, Reshape, Flatten, Dropout
-from keras.layers import BatchNormalization, Activation, ZeroPadding2D
-from keras.layers.advanced_activations import LeakyReLU
-from keras.layers.convolutional import UpSampling2D, Conv2D
-from keras.models import Sequential, Model
-from keras.optimizers import Adam
+from tensorflow.keras.layers import Input, Dense, Reshape, Flatten, Dropout
+from tensorflow.keras.layers import BatchNormalization, Activation, ZeroPadding2D
+from tensorflow.keras.layers import LeakyReLU
+from tensorflow.keras.layers import UpSampling2D, Conv2D
+from tensorflow.keras.models import Sequential, Model
+from tensorflow.keras.optimizers import Adam
 
 import matplotlib.pyplot as plt
 
 import sys,os
-import pandas
-from PIL import Image
 import numpy as np
 
 # Suggest x mut by 8
@@ -22,6 +23,10 @@ IMG_ROWS = 28
 IMG_COLS = 28
 IMG_DATA_PATH = 'data/'
 data_name = 'tee'
+
+EPOCHS = 1000
+BATCH_SIZE = 16
+SAVE_INTERVAL = 32
 
 
 class DCGAN():
@@ -192,4 +197,4 @@ class DCGAN():
 
 if __name__ == '__main__':
     dcgan = DCGAN()
-    dcgan.train(epochs=10001, batch_size=32, save_interval=1000)
+    dcgan.train(epochs=11, batch_size=6, save_interval=1000)
