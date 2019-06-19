@@ -1,8 +1,6 @@
 #!/usr/bin/python
 #-*- coding=utf-8 -*-
 import sys
-import os
-import argparse
 from keras.preprocessing.image import load_img,img_to_array,save_img
 from keras.applications import vgg19
 import  numpy as np
@@ -65,6 +63,7 @@ def main():
     width, height = load_img(target_image_path).size
     img_height = 200
     img_width = int(width * img_height / height)
+
 
     target_image = K.constant(preprocess_image(target_image_path))
     style_reference_image = K.constant(preprocess_image(style_reference_path))
@@ -172,13 +171,4 @@ def parse_command_line():
 
 
 if __name__ == 'main' or __name__ == '__main__':
-    args = parse_command_line()
-    target_image_path = sys.path[0]+'/content_image/'+args.content
-    style_reference_path = sys.path[0]+'/style_reference/'+args.style
-
-    if not os.path.exists(target_image_path):
-        print('target image not found ')
-    elif not os.path.exists(style_reference_path):
-        print('style image not found ')
-    else :
         main()
