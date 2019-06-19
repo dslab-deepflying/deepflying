@@ -142,7 +142,7 @@ def main():
         if(i == iterations-1):
             fname = 'NST.png'
             save_img(fname, img)
-            print('Image saved as %s '% fname)
+            print('\n\rImage saved as %s \n\r'% fname)
     print('\n\r')
 
 
