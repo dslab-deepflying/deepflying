@@ -3,19 +3,19 @@
 import sys
 import os
 import argparse
-from keras.preprocessing.image import load_img,img_to_array
+from keras.preprocessing.image import load_img,img_to_array,save_img
 from keras.applications import vgg19
 import  numpy as np
 from keras import backend as K
 from scipy.optimize import fmin_l_bfgs_b
-from scipy.misc import imsave
+
 import time
 
 target_image_path = ''
 style_reference_path = ''
 img_height = 200
 img_width = 200
-iter_size = 20
+iter_size = 1
 
 
 def preprocess_image(image_path):
@@ -144,7 +144,7 @@ def main():
         sys.stdout.flush()
         if(i == iterations-1):
             fname = sys.path[0]+'/target_image/'+result_prefix + '.png'
-            imsave(fname, img)
+            save_img(fname, img)
             print('Image saved as', fname)
 
 
