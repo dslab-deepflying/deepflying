@@ -142,7 +142,7 @@ def main():
         sys.stdout.write("\r[%2d%%]" % (int)(100.0*i/iterations))
         sys.stdout.flush()
         if(i == iterations-1):
-            fname = sys.path[0]+'/target_image/'+result_prefix + '.png'
+            fname = result_prefix + '.png'
             save_img(fname, img)
             print('Image saved as', fname)
 
