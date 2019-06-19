@@ -63,9 +63,8 @@ def total_variation_loss(x):
 
 def main():
     width, height = load_img(target_image_path).size
-    img_height = 400
+    img_height = 200
     img_width = int(width * img_height / height)
-    iter_size = args.i_size
 
     target_image = K.constant(preprocess_image(target_image_path))
     style_reference_image = K.constant(preprocess_image(style_reference_path))
