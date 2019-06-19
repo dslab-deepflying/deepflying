@@ -136,12 +136,14 @@ def main():
                                          fprime=evaluator.grads, maxfun=20)
         img = x.copy().reshape((img_height, img_width, 3))
         img = deprocess_image(img)
-        sys.stdout.write("\r[%2d%%]" % (int)(100.0*i/iterations))
+        percent = (int)(100.0*i/iterations)
+        sys.stdout.write("\r{0}{1}{2}{3}{4}".format("\r[%2d%%]" % percent, "[", "="*int(percent/4), " "*int(100-percent/4), "]"))
         sys.stdout.flush()
         if(i == iterations-1):
             fname = 'NST.png'
             save_img(fname, img)
             print('Image saved as %s '% fname)
+    print('\n\r')
 
 
 
