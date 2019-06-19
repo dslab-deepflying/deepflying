@@ -9,8 +9,8 @@ from scipy.optimize import fmin_l_bfgs_b
 
 import time
 
-target_image_path = ''
-style_reference_path = ''
+target_image_path = 'D:\codes\PyCharm\deepflying\InnoCamp\SF\pics\content.png'
+style_reference_path = 'D:\codes\PyCharm\deepflying\InnoCamp\SF\pics\style.jpg'
 img_height = 200
 img_width = 200
 iter_size = 1
@@ -61,6 +61,7 @@ def total_variation_loss(x):
 
 def main():
     width, height = load_img(target_image_path).size
+    global img_height,img_width
     img_height = 200
     img_width = int(width * img_height / height)
 
@@ -124,9 +125,6 @@ def main():
 
     evaluator = Evaluator()
 
-    result_prefix = target_image_path.split('/')[-1].split('.')[0]+"_by_" + \
-                    style_reference_path.split('/')[-1].split('.')[0]
-
     iterations = iter_size
 
     x = preprocess_image(target_image_path)
@@ -141,33 +139,11 @@ def main():
         sys.stdout.write("\r[%2d%%]" % (int)(100.0*i/iterations))
         sys.stdout.flush()
         if(i == iterations-1):
-            fname = result_prefix + '.png'
+            fname = 'NST.png'
             save_img(fname, img)
-            print('Image saved as', fname)
+            print('Image saved as %s '% fname)
 
 
-
-
-def parse_command_line():
-    parser = argparse.ArgumentParser(
-        description='Train a neural-net style image ',
-        formatter_class= argparse.ArgumentDefaultsHelpFormatter
-    )
-
-    parser.add_argument('--style',
-                       help='Style image name',
-                       default='d1.jpeg')
-
-    parser.add_argument('--content',
-                        help='Content image name',
-                        default='freegodness.jpeg')
-    parser.add_argument('--i_size',
-                        help='Iterate size for training',
-                        type=int,
-                        default=20)
-    args = parser.parse_args()
-
-    return args
 
 
 if __name__ == 'main' or __name__ == '__main__':
