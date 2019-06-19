@@ -7,11 +7,17 @@ import time
 from keras.applications import vgg19
 from keras import backend as K
 
+import matplotlib.pyplot as plt
 
-base_image_path = "pics/"
-style_reference_image_path = "pics/"
+import cv2
+import sys
+
+base_image_path = "pics/1.jpg"
+style_reference_image_path = "pics/2.jpg"
 result_prefix = "combined"
-iterations = 20
+iterations = 2
+SAVE_INTERVAL = 1
+
 
 # these are the weights of the different loss components
 total_variation_weight = 0.025
@@ -20,7 +26,7 @@ content_weight = 1.0
 
 # dimensions of the generated picture.
 width, height = load_img(base_image_path).size
-img_nrows = 200
+img_nrows = 50
 img_ncols = int(width * img_nrows / height)
 
 # util function to open, resize and format pictures into appropriate tensors
@@ -204,23 +210,63 @@ class Evaluator(object):
         self.grad_values = None
         return grad_values
 
-evaluator = Evaluator()
 
-# run scipy-based optimization (L-BFGS) over the pixels of the generated image
-# so as to minimize the neural style loss
-x = preprocess_image(base_image_path)
+def train():
+    print('WTF')
+    evaluator = Evaluator()
 
-for i in range(iterations):
-    print('Start of iteration', i)
-    start_time = time.time()
-    x, min_val, info = fmin_l_bfgs_b(evaluator.loss, x.flatten(),
-                                     fprime=evaluator.grads, maxfun=20)
-    print('Current loss value:', min_val)
-    end_time = time.time()
-    # save current generated image
-    img = deprocess_image(x.copy())
-    fname = result_prefix + '_at_iteration_%d.png' % i
-    save_img(fname, img)
-    # end_time = time.time()
-    print('Image saved as', fname)
-    print('Iteration %d completed in %ds' % (i, end_time - start_time))
+    # run scipy-based optimization (L-BFGS) over the pixels of the generated image
+    # so as to minimize the neural style loss
+    x = preprocess_image(base_image_path)
+
+    ori = load_img(base_image_path, target_size=(img_nrows, img_ncols))
+    ori = img_to_array(ori)
+    ori = np.array(ori, np.uint8)
+
+    sty = load_img(style_reference_image_path, target_size=(img_nrows, img_ncols))
+    sty = img_to_array(sty)
+    sty = np.array(sty, np.uint8)
+
+    plt.figure(figsize=(5, 6))
+    plt.subplot(2, 3, 1), plt.title('Content')
+    plt.axis('off')
+    plt.imshow(ori)
+    plt.subplot(2, 3, 2), plt.title('Style')
+    plt.axis('off')
+    plt.imshow(sty)
+    plt.show()
+
+    for i in range(iterations):
+        start_time = time.time()
+        x, min_val, info = fmin_l_bfgs_b(evaluator.loss, x.flatten(),
+                                         fprime=evaluator.grads, maxfun=20)
+        end_time = time.time()
+
+        if i % SAVE_INTERVAL == 0:
+            # save current generated image
+            img = deprocess_image(x.copy())
+            fname = result_prefix + '_at_iteration_%d.png' % i
+            save_img(fname, img)
+            # end_time = time.time()
+
+            print('Image saved as', fname)
+            plt.imshow(img)
+            plt.show()
+
+        sys.stdout.write(
+            "\r Iteration %d [ loss: %f ] , time : %ds " % (i, min_val, end_time - start_time))
+        sys.stdout.flush()
+
+    print(" \n\rTranslation complete ! \n\r")
+    plt.figure(figsize=(20, 24))
+    plt.subplot(4, 6, 1), plt.title('Origin')
+    plt.axis('off')
+    plt.imshow(ori)
+    plt.subplot(4, 6, 2), plt.title('NST')
+    plt.axis('off')
+    plt.imshow(img)
+    plt.show()
+
+
+if __name__ == '__main__':
+    train()
