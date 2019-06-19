@@ -15,7 +15,7 @@ target_image_path = ''
 style_reference_path = ''
 img_height = 200
 img_width = 200
-iter_size = 500
+iter_size = 20
 
 
 def preprocess_image(image_path):
@@ -62,6 +62,11 @@ def total_variation_loss(x):
 
 
 def main():
+    width, height = load_img(target_image_path).size
+    img_height = 400
+    img_width = int(width * img_height / height)
+    iter_size = args.i_size
+
     target_image = K.constant(preprocess_image(target_image_path))
     style_reference_image = K.constant(preprocess_image(style_reference_path))
     combination_image = K.placeholder((1,img_height,img_width,3))
@@ -177,8 +182,4 @@ if __name__ == 'main' or __name__ == '__main__':
     elif not os.path.exists(style_reference_path):
         print('style image not found ')
     else :
-        width, height = load_img(target_image_path).size
-        img_height = 400
-        img_width = int(width * img_height / height)
-        iter_size = args.i_size
         main()
