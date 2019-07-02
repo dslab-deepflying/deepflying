@@ -191,7 +191,7 @@ outputs_dict = dict([(layer.name, layer.output) for layer in model.layers])
 
 # the gram matrix of an image tensor (feature-wise outer product)
 
-"""### 定义伽马矩阵"""
+"""### 定义gram矩阵"""
 
 def gram_matrix(x):
     assert K.ndim(x) == 3
@@ -202,15 +202,6 @@ def gram_matrix(x):
     gram = K.dot(features, K.transpose(features))
     return gram
 
-import numpy as np
-
-a = np.array([[1,2,3],[2,3,4]])
-b = np.array([[1,2],[2,3],[3,4]])
-fa = K.batch_flatten(a)
-fb = K.batch_flatten(b)
-print(a.shape,b.shape)
-print(fa,fb)
-print(K.dot(fa, K.transpose(fa)),K.dot(fb, K.transpose(fb)))
 
 """### 定义风格损失"""
 
