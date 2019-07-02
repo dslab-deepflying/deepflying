@@ -227,14 +227,15 @@ def train():
     sty = img_to_array(sty)
     sty = np.array(sty, np.uint8)
 
-    plt.figure(figsize=(5, 6))
-    plt.subplot(2, 3, 1), plt.title('Content')
-    plt.axis('off')
-    plt.imshow(ori)
-    plt.subplot(2, 3, 2), plt.title('Style')
-    plt.axis('off')
-    plt.imshow(sty)
-    plt.show()
+    # plt.figure(figsize=(5, 6))
+    # plt.subplot(2, 3, 1), plt.title('Content')
+    # plt.axis('off')
+    # plt.imshow(ori)
+    # plt.subplot(2, 3, 2), plt.title('Style')
+    # plt.axis('off')
+    # plt.imshow(sty)
+    # plt.show()
+
 
     for i in range(iterations):
         start_time = time.time()
@@ -250,8 +251,8 @@ def train():
             # end_time = time.time()
 
             print('Image saved as', fname)
-            plt.imshow(img)
-            plt.show()
+            # plt.imshow(img)
+            # plt.show()
 
         sys.stdout.write(
             "\r Iteration %d [ loss: %f ] , time : %ds " % (i, min_val, end_time - start_time))
@@ -265,9 +266,9 @@ def train():
     plt.subplot(4, 6, 2), plt.title('NST')
     plt.axis('off')
     plt.imshow(img)
-    plt.show()
+    plt.savefig("nst-final")
+    # plt.show()
 
 
 if __name__ == '__main__':
-    print("main!")
     train()

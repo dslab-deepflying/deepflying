@@ -4,12 +4,12 @@ DCGAN build with tensorflow2.0-beta by keras
 """
 from __future__ import print_function, division
 
-from tensorflow.keras.layers import Input, Dense, Reshape, Flatten, Dropout
-from tensorflow.keras.layers import BatchNormalization, Activation, ZeroPadding2D
-from tensorflow.keras.layers import LeakyReLU
-from tensorflow.keras.layers import UpSampling2D, Conv2D
-from tensorflow.keras.models import Sequential, Model
-from tensorflow.keras.optimizers import Adam
+from keras.layers import Input, Dense, Reshape, Flatten, Dropout
+from keras.layers import BatchNormalization, Activation, ZeroPadding2D
+from keras.layers import LeakyReLU
+from keras.layers import UpSampling2D, Conv2D
+from keras.models import Sequential, Model
+from keras.optimizers import Adam
 
 import matplotlib.pyplot as plt
 
