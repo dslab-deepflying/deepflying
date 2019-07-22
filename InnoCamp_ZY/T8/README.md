@@ -3,7 +3,7 @@
 ### 时光隧道
 
 <p align="center">
-    <img src="show.jpg" width="200"\>
+    <img src="show.png" width="200"\>
 </p>
 
 ### 仙雀
