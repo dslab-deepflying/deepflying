@@ -2,7 +2,7 @@
     <img src="assets/icon.png" width="480"\>
 </p>
 
-## Deepflying
+## Deepflying (Achievement)
 AI fashion with DunHuang style . Using **GAN** 
 (Generative Adversarial Neural-network) to generate 
 new content of cloths ; Using **Style-Transfer** to 
