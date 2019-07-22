@@ -3,7 +3,7 @@
 ### Original model
 
 <p align="center">
-    <img src="show2.png" width="480"\>
+    <img src="show2.jpg" width="480"\>
 </p>
 
 ### Transformed model
