@@ -25,6 +25,10 @@ download them by the link below:
 
 Link : https://pan.baidu.com/s/1-hPIOf0Am3J0qhlzG4tgAQ 
 
-PassWD : he8r 
+PassWD : he8r    
+
+Google InnoCamp(ZhangYe) 2019 video clip
+Link：https://pan.baidu.com/s/1hhz_K1TRSABQTl6zqVaZbA    
+PassWD：t3t6    
 
  
