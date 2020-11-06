@@ -1,5 +1,7 @@
 #!/usr/bin/python
 #-*- coding=utf-8 -*-
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 import sys
 from keras.preprocessing.image import load_img,img_to_array,save_img
 from keras.applications import vgg19
