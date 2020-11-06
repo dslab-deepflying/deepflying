@@ -96,9 +96,9 @@ def main():
         style_reference_features = layer_features[1,:,:,:]
         combination_features =     layer_features[2,:,:,:]
         s1 = style_loss(style_reference_features,combination_features)
-        loss += (style_weight/len(style_layers))*s1
+        loss = loss + (style_weight/len(style_layers))*s1
 
-    loss += total_variation_weight * total_variation_loss(combination_image)
+    loss = loss + total_variation_weight * total_variation_loss(combination_image)
 
     grads = K.gradients(loss, combination_image)[0]
     fetch_loss_and_grads = K.function([combination_image], [loss, grads])
